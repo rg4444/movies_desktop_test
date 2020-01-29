@@ -1,11 +1,4 @@
-# electron-template
-### An electron, Vue.js and Bootstrap starting point for all!
-
-**Clone and run for a quick way to see Electron, Vue.js and Bootstrap in action.**
-
-This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start) within the Electron documentation.
-
-**Use this app along with the [Electron API Demos](http://electron.atom.io/#get-started) app for API code examples to help you get started.**
+# movies desktop app test
 
 A basic Electron application needs just these files:
 
