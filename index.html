@@ -62,6 +62,26 @@
         display: none;
       }
 
+html {
+  scrollbar-face-color: #646464;
+  scrollbar-base-color: #646464;
+  scrollbar-3dlight-color: #646464;
+  scrollbar-highlight-color: #646464;
+  scrollbar-track-color: #000;
+  scrollbar-arrow-color: #000;
+  scrollbar-shadow-color: #646464;
+  scrollbar-dark-shadow-color: #646464;
+}
+
+::-webkit-scrollbar { width: 8px; height: 3px;}
+::-webkit-scrollbar-button {  background-color: #666; }
+::-webkit-scrollbar-track {  background-color: #646464;}
+::-webkit-scrollbar-track-piece { background-color: #000;}
+::-webkit-scrollbar-thumb { height: 30px; background-color: #666; border-radius: 3px;}
+::-webkit-scrollbar-corner { background-color: #646464;}}
+::-webkit-resizer { background-color: #666;}
+
+
     </style>
     
     <script>
@@ -78,6 +98,17 @@
    
 
 <div class="container">	
+<!---------------------------------------------------------------------------------------------------------------------->
+<!--LOG ELEMENTS>
+<!---------------------------------------------------------------------------------------------------------------------->
+<!--<div id="log" style="position: fixed; width: 50%; height: 50%; background-color: #cecece; color: #000; z-index: 3000;">
+<h4>main.js traceroute log:<h4> 
+<div id="log" style="position: fixed; width: 50%; height: 50%; z-index: 3000;">
+</div>--->
+<!---------------------------------------------------------------------------------------------------------------------->
+
+
+
 <div  style="height: 480px;" class="row">
   <div style="background-color: white;" class="col-2">
  <a href="#">  <img src="./img/filmas-logo-black.png" style="padding: 10px;" alt="My Image" class="img-fluid"> </a>
@@ -126,6 +157,8 @@
   <div  class="col">
    <img src="./img/connect.png" width="120px" >
   <div style="margin-top: 10px;" > Connection Speed : High | Stable </div>
+ <div>Console Log: </div>
+  
     </div>
 				<div  class="col">
 				<div>Stream type: HLS</div>
@@ -179,33 +212,9 @@ function updateEveryXms3(min , max, ms) {
 updateEveryXms3(10, 25, 400);
 </script>
 									</div>
-									<div>Latency:  <span id="rnd"></span> ms
-									
+		
+									<div>Latency:  <span  id="log2" ></span> ms
 								
-								<script>
-									function randWithVariation(min, max, variation) {
-								  var seed = (Math.floor(Math.random() * max) % (max - min)) + min; // attempts to keep the result within the bounds
-								  var min = min, max = max, variation = variation;
-								  var r = function() {
-									var offset = Math.floor(Math.random() * variation);
-									if (Math.random() < 0.5) offset *= -1; // chance that number will decrease
-									seed += offset;
-									if (seed < min) return max - seed; // also attempts to keep the result within the bounds
-									if (seed > max) return min + (seed - max);
-									else return seed;
-								  }
-								  return r;
-								}
-
-								var rand = randWithVariation(50, 140, 15);
-								document.getElementById('rnd').innerHTML = rand();
-								setInterval(() => {
-								  document.getElementById('rnd').innerHTML = rand();
-								}, 500);
-						
-								</script>
-	
-									
 									</div>
 								  </div>
 <div  class="col">								  
@@ -281,6 +290,33 @@ function initClock() {
   </div>
 
 </div>
+				<div  style="height: 80px; background-color: #000; z-index: 99;" class="row">
+			 <div direction="up" id="log" 
+				  style="
+				position: fixed; 
+				  width: 460px; 
+				  height: 60px; 
+				padding-left:15px;
+				  overflow: auto;
+				  scrollbar-color: dark;
+				  display: flex;
+				  flex-direction: column-reverse;
+				  z-index: 3000;">
+		</div>
+		
+					 <div direction="up" id="log3" 
+				  style="
+				position: fixed; 
+				  width: 460px; 
+				  height: 60px; 
+				left:500px;
+				  overflow: auto;
+				  scrollbar-color: dark;
+				  display: flex;
+				  flex-direction: column-reverse;
+				  z-index: 3000;">
+		</div>
+				</div>
 </div>
 
           

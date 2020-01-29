@@ -32,6 +32,7 @@
   "dependencies": {
     "asar": "^2.0.3",
     "nodejs-traceroute": "^1.1.1",
+    "systeminformation": "^4.21.0",
     "traceroute": "^1.0.0",
     "universal-analytics": "^0.4.20"
   }

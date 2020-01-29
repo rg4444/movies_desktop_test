@@ -10,29 +10,40 @@ const url = require('url')
 
 const si = require('systeminformation');
 
+// In main process.
+const {ipcMain} = require('electron')
+  //const mainWindow = ... // reference to the BrowserWindow
+
+
 const Traceroute = require('nodejs-traceroute');
- 
+  
+function runTraceroute() { 
 try {
     const tracer = new Traceroute();
     tracer
-        .on('pid', (pid) => {
-            console.log(`pid: ${pid}`);
-        })
+ //       .on('pid', (pid) => {
+ //           console.log(`pid: ${pid}`);
+//			mainWindow.webContents.send('asynchronous-message', `pid: ${pid}`)
+ //       })
         .on('destination', (destination) => {
-            console.log(`destination: ${destination}`);
+  //          console.log(`destination: ${destination}`);
+			mainWindow.webContents.send('asynchronous-message', `destination: ${destination}`)
         })
         .on('hop', (hop) => {
-            console.log(`hop: ${JSON.stringify(hop)}`);
+ //           console.log(`hop: ${JSON.stringify(hop)}`);
+			mainWindow.webContents.send('asynchronous-message', `hop: ${JSON.stringify(hop)}`)
+			
         })
         .on('close', (code) => {
-            console.log(`close: code ${code}`);
+ //           console.log(`close: code ${code}`);
+			mainWindow.webContents.send('asynchronous-message', `close: code ${code}`)
         });
  
     tracer.trace('github.com');
 } catch (ex) {
     console.log(ex);
 }
-
+}
 
 //si.cpu(function(data) {
 //    console.log('CPU Information:');
@@ -56,21 +67,24 @@ try {
 //si.getDynamicData().then(data => {
 //	    console.log(data);
 
-//setInterval(function() {
-//si.inetChecksite('https://systeminformation.io/network.html').then(data => {
-//	    console.log(data)		
-//	})
-//}, 1000)
+setInterval(function() {
+si.inetChecksite('https://systeminformation.io/network.html').then(data => {
+	    console.log(data);
+        mainWindow.webContents.send('asynchronous-message3', data);		
+	})
+}, 1000)
 
-//setInterval(function() {
-//si.inetLatency('1.1.1.1').then(data => {
-//	    console.log(data)
-//	})
-//}, 1000)
+setInterval(function() {
+si.inetLatency('1.1.1.1').then(data => {
+//	    console.log(data);
+		mainWindow.webContents.send('asynchronous-message2', data);
+	})
+}, 1000)
 
 //setInterval(function() {
 //    si.networkStats().then(data => {
 //        console.log(data);
+//		mainWindow.webContents.send('asynchronous-message3', data);
 //    })
 //}, 1000)
 
@@ -84,7 +98,7 @@ let mainWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({    width: 1000,
-    height: 620,
+    height: 700,
     resizable: false,
 	backgroundColor: '#000000'
 })
@@ -98,7 +112,7 @@ function createWindow () {
  // mainWindow.setMenu(null)
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+ //  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -108,6 +122,17 @@ function createWindow () {
     mainWindow = null
   })
   require('./menu/mainmenu')
+  
+  
+  //ŠIS PALAIŽ TRACEROUTE FUNKCIJU UN NOSŪTA DATUS UZ PAMATLOGU
+    setTimeout(() => {
+        console.log("sending message from main process")
+        mainWindow.webContents.send('asynchronous-message', 'Starting traceroute');
+		mainWindow.webContents.send('asynchronous-message2', 'Starting traceroute2');
+		mainWindow.webContents.send('asynchronous-message3', 'Starting traceroute3');
+		runTraceroute();
+    }, 2000)    
+  
 }
 
 // This method will be called when Electron has finished
