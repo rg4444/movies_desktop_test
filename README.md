@@ -26,10 +26,7 @@ npm start
 
 ## Package native apps for Windows, Mac and Linux using [electron-packager](https://github.com/electron-userland/electron-packager)
 
-To build windows app:
-```bash
-npm run package-win
-```
+
 How to make Windows app
 https://www.christianengvall.se/electron-packager-tutorial/
 ```bash
