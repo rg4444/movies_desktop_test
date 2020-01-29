@@ -24,7 +24,7 @@ npm install
 npm start
 ```
 
-## Package native apps for Windows, Mac and Linux using [electron-packager](https://github.com/electron-userland/electron-packager)
+## Package native apps for Windows, Mac and Linux 
 
 
 How to make Windows app
