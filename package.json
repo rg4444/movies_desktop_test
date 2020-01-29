@@ -1,0 +1,38 @@
+{
+  "name": "Filmas-lv-Desktop-app",
+  "productName": "Filmas-lv Desktop app",
+  "version": "0.0.1",
+  "description": "Filmas-lv Desktop app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install": "electron-rebuild",
+    "package-all": "electron-packager .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --prune=true",
+    "package-win": "electron-packager . --overwrite --platform=win32 --prune=true --asar=true",
+    "package-linux": "electron-packager . --overwrite --platform=linux --prune=true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rg4444"
+  },
+  "keywords": [
+    "Games"
+  ],
+  "author": "rihardsgailums",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.8.8",
+    "electron-packager": "^9.1.0",
+    "electron-rebuild": "^1.4.0",
+    "electron-winstaller": "^4.0.0",
+    "electron-wix-msi": "^2.2.0",
+    "standard": "*"
+  },
+  "dependencies": {
+    "asar": "^2.0.3",
+    "nodejs-traceroute": "^1.1.1",
+    "traceroute": "^1.0.0",
+    "universal-analytics": "^0.4.20"
+  }
+}

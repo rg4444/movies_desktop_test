@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Filmas.lv Desktop app v 0.0.1</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/bootstrap.css">
+<script scr="js/bootstrap.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<style>	
+
+	  body {
+    font-family: "Segoe UI";
+    font-size: 10px;
+    color: #DCDCDC;
+ }
+
+
+	* { box-sizing: border-box; }
+.video-background {
+
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#vidtop-content {
+	top: 0;
+	color: #fff;
+}
+.vid-info { position: absolute; top: 0; right: 0; width: 33%; background: rgba(0,0,0,0.3); color: #fff; padding: 1rem; font-family: Avenir, Helvetica, sans-serif; }
+.vid-info h1 { font-size: 2rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
+.vid-info a { display: block; color: #fff; text-decoration: none; background: rgba(0,0,0,0.5); transition: .6s background; border-bottom: none; margin: 1rem auto; text-align: center; }
+@media (min-aspect-ratio: 16/9) {
+  .video-foreground { height: 300%; top: -100%; }
+}
+@media (max-aspect-ratio: 16/9) {
+.video-foreground { height: 124%; top: -12%; }
+}
+@media all and (max-width: 600px) {
+.vid-info { width: 50%; padding: .5rem; }
+.vid-info h1 { margin-bottom: .2rem; }
+}
+@media all and (max-width: 500px) {
+.vid-info .acronym { display: none; }
+}
+	
+      /* prevents seeing those {{variable}} before Vue.js is ready to render */
+      [v-cloak] {
+        display: none;
+      }
+
+    </style>
+    
+    <script>
+      const pjson = require('./package.json')
+      document.title = `Filmas.lv Desktop app v${pjson.version}`
+    </script>
+
+  </head>
+  <body  onLoad="initClock()">
+   
+
+				  
+			   
+   
+
+<div class="container">	
+<div  style="height: 480px;" class="row">
+  <div style="background-color: white;" class="col-2">
+ <a href="#">  <img src="./img/filmas-logo-black.png" style="padding: 10px;" alt="My Image" class="img-fluid"> </a>
+ <style>
+.img-fluid:hover {
+  transform: scale(1.1);
+}
+</style>
+ <a href="#">  <img src="./img/11.png" alt="My Image" class="img-fluid"> </a>
+ <a href="#">  <img src="./img/22.png" alt="My Image" class="img-fluid"> </a>
+ <a href="#"> <img src="./img/33.png" alt="My Image" class="img-fluid"> </a>
+<a href="#"> <img alt="A" src="./img/44.png" alt="My Image" class="img-fluid"></a>
+  </div>
+  <div style="padding:0px;" class="col-10">
+     
+
+          <video height="460" width="810" id="video" controls></video>
+  
+	  
+	  <script>
+        if(Hls.isSupported()) {
+          var video = document.getElementById('video');
+          var hls = new Hls();
+          hls.loadSource('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8');
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED,function() {
+            video.play();
+        });
+       }
+       // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+       // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+       // This is using the built-in support of the plain video element, without using hls.js.
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = 'https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8';
+          video.addEventListener('canplay',function() {
+            video.play();
+          });
+        }
+      </script>
+
+ 
+  
+  </div>
+</div>
+<div  style="height: 80px; background-color: #000; z-index: 99;" class="row">
+  <div  class="col">
+   <img src="./img/connect.png" width="120px" >
+  <div style="margin-top: 10px;" > Connection Speed : High | Stable </div>
+    </div>
+				<div  class="col">
+				<div>Stream type: HLS</div>
+				<div>Connection status: Encrypted | Secure</div>
+				</div>
+									<div  class="col">
+								
+									
+									<div>Download Speed: <span id="rnd2"></span> Mbps
+									</div>
+									<script>
+//returns a random number beetween min and max
+function randMinMax(min , max) {
+    return min + Math.floor((Math.random() * max));
+
+}
+function updateEveryXms2(min , max, ms) {
+    //start allredy with a random number instad of waiting ms
+    document.getElementById("rnd2").innerHTML = randMinMax(min,max);
+    //do it for ever and ever
+    setInterval(
+        function(){
+            document.getElementById("rnd2").innerHTML = randMinMax(min,max);
+        }, ms);
+
+}
+
+updateEveryXms2(20, 35, 400);
+
+</script>
+									
+									
+									<div>Upload Speed:   <span id="rnd3"></span> Mbps
+<script>
+//returns a random number beetween min and max
+function randMinMax(min , max) {
+    return min + Math.floor((Math.random() * max));
+
+}
+function updateEveryXms3(min , max, ms) {
+    //start allredy with a random number instad of waiting ms
+    document.getElementById("rnd3").innerHTML = randMinMax(min,max);
+    //do it for ever and ever
+    setInterval(
+        function(){
+            document.getElementById("rnd3").innerHTML = randMinMax(min,max);
+        }, ms);
+
+}
+
+updateEveryXms3(10, 25, 400);
+</script>
+									</div>
+									<div>Latency:  <span id="rnd"></span> ms
+									
+								
+								<script>
+									function randWithVariation(min, max, variation) {
+								  var seed = (Math.floor(Math.random() * max) % (max - min)) + min; // attempts to keep the result within the bounds
+								  var min = min, max = max, variation = variation;
+								  var r = function() {
+									var offset = Math.floor(Math.random() * variation);
+									if (Math.random() < 0.5) offset *= -1; // chance that number will decrease
+									seed += offset;
+									if (seed < min) return max - seed; // also attempts to keep the result within the bounds
+									if (seed > max) return min + (seed - max);
+									else return seed;
+								  }
+								  return r;
+								}
+
+								var rand = randWithVariation(50, 140, 15);
+								document.getElementById('rnd').innerHTML = rand();
+								setInterval(() => {
+								  document.getElementById('rnd').innerHTML = rand();
+								}, 500);
+						
+								</script>
+	
+									
+									</div>
+								  </div>
+<div  class="col">								  
+  	<div>VPN Bandwidth:  
+	<span id="demo"></span> Mbps
+</div>
+<script>
+//returns a random number beetween min and max
+function randMinMax(min , max) {
+    return min + Math.floor((Math.random() * max));
+
+}
+function updateEveryXms(min , max, ms) {
+    //start allredy with a random number instad of waiting ms
+    document.getElementById("demo").innerHTML = randMinMax(min,max);
+    //do it for ever and ever
+    setInterval(
+        function(){
+            document.getElementById("demo").innerHTML = randMinMax(min,max);
+        }, ms);
+
+}
+
+updateEveryXms(8, 9, 500);
+
+</script>
+
+
+  <div id="timedate">
+    <a id="mon">January</a>
+    <a id="d">22</a>,
+    <a id="y">2020</a><br />
+    <a id="h">12</a> :
+    <a id="m">00</a>:
+    <a id="s">00</a>:
+    <a id="mi">000</a>
+  </div>
+
+<script>
+// START CLOCK SCRIPT
+
+Number.prototype.pad = function(n) {
+  for (var r = this.toString(); r.length < n; r = 0 + r);
+  return r;
+};
+
+function updateClock() {
+  var now = new Date();
+  var milli = now.getMilliseconds(),
+    sec = now.getSeconds(),
+    min = now.getMinutes(),
+    hou = now.getHours(),
+    mo = now.getMonth(),
+    dy = now.getDate(),
+    yr = now.getFullYear();
+  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var tags = ["mon", "d", "y", "h", "m", "s", "mi"],
+    corr = [months[mo], dy, yr, hou.pad(2), min.pad(2), sec.pad(2), milli];
+  for (var i = 0; i < tags.length; i++)
+    document.getElementById(tags[i]).firstChild.nodeValue = corr[i];
+}
+
+function initClock() {
+  updateClock();
+  window.setInterval("updateClock()", 1);
+}
+
+// END CLOCK SCRIPT
+
+</script>
+
+
+  </div>
+
+</div>
+</div>
+
+          
+
+    <!--
+      Insert this line above script imports
+      this is done to make sure that jQuery and others are imported properly
+    -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="js/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+  
+
+  
+  
+  
+</html>
