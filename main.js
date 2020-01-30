@@ -68,7 +68,7 @@ try {
 //	    console.log(data);
 
 setInterval(function() {
-si.inetChecksite('https://systeminformation.io/network.html').then(data => {
+si.inetChecksite('https://www.filmas.lv').then(data => {
 //	    console.log(data);
         mainWindow.webContents.send('asynchronous-message3', data);		
 	})
@@ -81,12 +81,12 @@ si.inetLatency('1.1.1.1').then(data => {
 	})
 }, 1000)
 
-setInterval(function() {
-    si.networkStats().then(data => {
-       console.log(data);
+//setInterval(function() {
+//    si.networkStats().then(data => {
+ //      console.log(data);
 //		mainWindow.webContents.send('asynchronous-message3', data);
-    })
-}, 1000)
+//    })
+//}, 1000)
 
 
 // Keep a global reference of the window object, if you don't, the window will

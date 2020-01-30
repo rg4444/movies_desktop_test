@@ -15,7 +15,7 @@
     ipcRenderer.on('asynchronous-message3', (event, data) => {
     console.log("Received from main.js: " + data);
 	//alert(arg);
-	document.getElementById('log3').innerHTML = data.url+ "<br>"+data.ok+ "<br>"+data.status+ "<br>"+data.ms;
+	document.getElementById('log3').innerHTML = "Pinging  &ensp;  " + data.url + "&ensp; Ping: &ensp;"+ data.ms;
   })
 
 
