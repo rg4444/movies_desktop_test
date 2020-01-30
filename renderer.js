@@ -21,7 +21,7 @@
       ipcRenderer.on('asynchronous-message4', (event, data) => {
     console.log("Received from main.js: " + data);
 	//alert(arg);
-	document.getElementById('log4').innerHTML = "Manufacturer: &ensp; "+data.system.manufacturer+"<br> Model: &ensp; "+data.system.model+"<br> OS: &ensp; "+data.os.platform+"<br> OS version: &ensp; "+data.os.distro;
+	document.getElementById('log4').innerHTML = "Manufacturer: &ensp; "+data.system.manufacturer+"<br> Model: &ensp; "+data.system.model+"<br> OS: &ensp; "+data.os.platform+"<br> OS version: &ensp; "+data.os.distro+"<br> CPU: &ensp; "+data.cpu.brand+"<br> Network card: &ensp; "+data.net.toString();
   })
 
 
