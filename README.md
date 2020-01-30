@@ -39,16 +39,5 @@ electron-packager . --overwrite --platform=darwin --arch=x64 --icon=icon.icns --
 node build_installer.js
 ```
 
-`see package.json for other useful scripts!`
-
-Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/).
-
-## Other Example Apps
-
-For more example apps, see the
-[list of boilerplates](http://electron.atom.io/community/#boilerplates)
-created by the awesome electron community.
-
-For a basic serial monitor example app see [electron-serialmon](https://github.com/jcramirez/electron-serialmon)
 
 #### License [CC0 1.0 (Public Domain)](LICENSE.md)

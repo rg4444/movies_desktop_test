@@ -17,6 +17,12 @@
 	//alert(arg);
 	document.getElementById('log3').innerHTML = "Pinging  &ensp;  " + data.url + "&ensp; Ping: &ensp;"+ data.ms;
   })
+  
+      ipcRenderer.on('asynchronous-message4', (event, data) => {
+    console.log("Received from main.js: " + data);
+	//alert(arg);
+	document.getElementById('log4').innerHTML = "Manufacturer: &ensp; "+data.system.manufacturer+"<br> Model: &ensp; "+data.system.model+"<br> OS: &ensp; "+data.os.platform+"<br> OS version: &ensp; "+data.os.distro;
+  })
 
 
 

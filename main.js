@@ -2,12 +2,13 @@ const electron = require('electron')
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
-const ua = require('universal-analytics')
 
+const ua = require('universal-analytics')
+// var windowManager = require('electron-window-manager');
 const path = require('path')
 const url = require('url')
-
+const windowManager = require('electron-window-manager');
+const BrowserWindow = electron.BrowserWindow;
 const si = require('systeminformation');
 
 // In main process.
@@ -39,7 +40,7 @@ try {
 			mainWindow.webContents.send('asynchronous-message', `close: code ${code}`)
         });
  
-    tracer.trace('github.com');
+    tracer.trace('filmas.lv');
 } catch (ex) {
     console.log(ex);
 }
@@ -61,8 +62,10 @@ try {
 //	    console.log(data);
 //	});
 // Working!
-//	si.getStaticData().then(data => {
-//	    console.log(data);
+	si.getStaticData().then(data => {
+	    console.log(data);
+		mainWindow.webContents.send('asynchronous-message4', data);
+		})
 // Working!
 //si.getDynamicData().then(data => {
 //	    console.log(data);
@@ -134,6 +137,10 @@ function createWindow () {
     }, 2000)    
   
 }
+
+
+
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
