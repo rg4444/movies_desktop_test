@@ -22,7 +22,7 @@
   "author": "rihardsgailums",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^1.8.8",
+    "electron": "^9.1.0",
     "electron-packager": "^9.1.0",
     "electron-rebuild": "^1.4.0",
     "electron-winstaller": "^4.0.0",
